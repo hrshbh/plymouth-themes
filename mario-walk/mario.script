@@ -1,0 +1,91 @@
+# Background Sky ----------------------------------------------------
+sky.image = Image("sky.png");
+sky.sprite = Sprite(background.image);
+sky.sprite.SetX (Window.GetWidth() / 2 - sky.image.GetWidth() / 2);
+sky.sprite.SetY (Window.GetHeight() / 2 - sky.image.GetHeight() / 2);
+sky.sprite.SetOpacity (1.0);
+sky.sprite.SetZ (0);
+progress = 0;
+
+# Ground -------------------------------------------------------------
+ground.image = Image("ground.png");
+ground.sprite = Sprite(background.image);
+ground.SetX (Window.GetWidth() / 2 - ground.image.GetWidth() / 2);
+ground.SetY (Window.GetHeight() / 2 + sky.image.GetHeight() / 2 - ground.image.GetHeight());
+ground.sprite.SetOpacity (1.0);
+ground.sprite.SetZ (100);
+
+leftEdge = Window.GetWidth() / 2 - sky.image.GetWidth() / 2; 
+unit = sky.image.GetWidth() / 16;
+groundLevel = Window.GetHeight() / 2 + sky.image.GetHeight() / 2 - ground.image.GetHeight();
+
+# Castle -------------------------------------------------------------
+castle.image = Image("castle.png");
+castle.sprite = Sprite(castle.image);
+castle.SetX (leftEdge + unit * 10);
+castle.SetY (groundLevel-castle.image.getHeight());
+castle.sprite.SetOpacity (1.0);
+castle.sprite.SetZ (50);
+
+# Cloud
+cloud.image = Image("cloud.png");
+cloud.sprite = Sprite(cloud.image);
+cloud.SetX (leftEdge+2*unit);
+cloud.SetY (groundLevel-5*unit-cloud.image.GetHeight());
+cloud.sprite.SetOpacity (1.0);
+cloud.sprite.SetZ (102);
+
+# Double Cloud
+doubleCloud.image = Image("doubleCloud.png");
+doubleCloud.sprite = Sprite(doubleCloud.image);
+doubleCloud.SetX (leftEdge+7*unit);
+doubleCloud.SetY (groundLevel-4*unit-doubleCloud.image.GetHeight());
+doubleCloud.SetOpacity (1.0);
+doubleCloud.setZ (101);
+
+# Small Hill
+smallHill.image = Image("smallHill.png");
+smallHill.sprite = Sprite(smallHill.image);
+smallHill.SetX (leftEdge+unit*9);
+smallHill.SetY (groundLevel-smallHill.image.getHeight());
+smallHill.SetOpacity (1.0);
+smallHill.SetZ (25);
+
+# Big Hill
+#bigHill.image = Image("bigHill.png");
+#bigHill.sprite = Sprite(bigHill.image);
+#bigHill.SetX ();
+#bigHill.setY ();
+#bigHill.setOpacity (0.0);
+#bigHill.SetZ (20);
+
+# Small Bush
+smallBush.image = Image("smallBush.png");
+smallBush.sprite = Sprite(smallBush.image);
+smallBush.SetX (leftEgde + 2*unit);
+smallBush.SetY (groundLevel - smallBush.image.GetHeight());
+smallBush.SetOpacity (0.0);
+smallBush.SetZ (35);
+
+# Big Bush
+#bigBush.image = Image("bigBush.png");
+#bigBush.sprite = Sprite(bigBush.image);
+#bigBush.SetX ();
+#bigBush.SetY ();
+#bigBush.SetOpacity (0.0);
+#bigBush.SetZ (30);
+
+# Mario
+for(int i=0;i<4;i++)
+{
+    mario[i].image = Image("mario"+i+".png");
+    mario[i].sprite = Sprite(mario[i].image);
+    mario[i].setOpacity (0.0);
+    mario[i].setY ();
+}
+
+fun refresh()
+{
+    
+    progress++;
+}
