@@ -1,4 +1,4 @@
-# Background Sky ----------------------------------------------------
+# Background Sky
 sky.image = Image("sky.png");
 sky.sprite = Sprite(background.image);
 sky.sprite.SetX (Window.GetWidth() / 2 - sky.image.GetWidth() / 2);
@@ -7,7 +7,7 @@ sky.sprite.SetOpacity (1.0);
 sky.sprite.SetZ (0);
 progress = 0;
 
-# Ground -------------------------------------------------------------
+# Ground
 ground.image = Image("ground.png");
 ground.sprite = Sprite(background.image);
 ground.SetX (Window.GetWidth() / 2 - ground.image.GetWidth() / 2);
@@ -19,7 +19,7 @@ leftEdge = Window.GetWidth() / 2 - sky.image.GetWidth() / 2;
 unit = sky.image.GetWidth() / 16;
 groundLevel = Window.GetHeight() / 2 + sky.image.GetHeight() / 2 - ground.image.GetHeight();
 
-# Castle -------------------------------------------------------------
+# Castle
 castle.image = Image("castle.png");
 castle.sprite = Sprite(castle.image);
 castle.SetX (leftEdge + unit * 10);
@@ -35,13 +35,13 @@ cloud.SetY (groundLevel-5*unit-cloud.image.GetHeight());
 cloud.sprite.SetOpacity (1.0);
 cloud.sprite.SetZ (102);
 
-# Double Cloud
-doubleCloud.image = Image("doubleCloud.png");
-doubleCloud.sprite = Sprite(doubleCloud.image);
-doubleCloud.SetX (leftEdge+7*unit);
-doubleCloud.SetY (groundLevel-4*unit-doubleCloud.image.GetHeight());
-doubleCloud.SetOpacity (1.0);
-doubleCloud.setZ (101);
+# Big Cloud
+bigCloud.image = Image("bigCloud.png");
+bigCloud.sprite = Sprite(bigCloud.image);
+bigCloud.SetX (leftEdge+7*unit);
+bigCloud.SetY (groundLevel-4*unit-bigCloud.image.GetHeight());
+bigCloud.SetOpacity (1.0);
+bigCloud.setZ (101);
 
 # Small Hill
 smallHill.image = Image("smallHill.png");
@@ -76,16 +76,18 @@ smallBush.SetZ (35);
 #bigBush.SetZ (30);
 
 # Mario
-for(int i=0;i<4;i++)
+for(int i=0;i<3;i++)
 {
     mario[i].image = Image("mario"+i+".png");
-    mario[i].sprite = Sprite(mario[i].image);
     mario[i].setOpacity (0.0);
-    mario[i].setY ();
 }
+
+mario.sprite = Sprite(mario[0].image);
+mario.setY ();
+mario.setX (0);
 
 fun refresh()
 {
-    
+    mario.sprite = Sprite(mario[progress%4].image);
     progress++;
 }
