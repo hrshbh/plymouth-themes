@@ -18,7 +18,7 @@ ground.sprite.SetZ (100);
 leftEdge = Window.GetWidth() / 2 - sky.image.GetWidth() / 2; 
 unit = sky.image.GetWidth() / 16;
 groundLevel = Window.GetHeight() / 2 + sky.image.GetHeight() / 2 - ground.image.GetHeight();
-
+rightEdge = Window.GetWidth() / 2 + sky.image.GetWidth() / 2;
 # Castle
 castle.image = Image("castle.png");
 castle.sprite = Sprite(castle.image);
@@ -88,6 +88,8 @@ mario.setX (0);
 
 fun refresh()
 {
-    mario.sprite = Sprite(mario[progress%4].image);
+    if(progress%16==0)
+        mario.sprite = Sprite(mario[progress%64].image);
+    mario.setX(progress/10);
     progress++;
 }
