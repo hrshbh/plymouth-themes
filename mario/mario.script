@@ -116,12 +116,12 @@ fun refresh()
 {
     progress++;
     if ( (progress % 10) == 0){
-        remainder = ( progress / 10 ) % 3;
-        for(i=0;i<3;i++){
-            mario[i].sprite.SetZ (-1);
+        remainder = ( progress / 10 ) % 2;
+        for(i=0;i<2;i++){
+            mario[i+1].sprite.SetZ (-1);
         }
-        mario[remainder].sprite.SetZ (99);
-        mario[remainder].sprite.SetX (leftEdge + progress/2);
+        mario[remainder+1].sprite.SetZ (99);
+        mario[remainder+1].sprite.SetX (leftEdge + progress/2);
     }
 }
 
