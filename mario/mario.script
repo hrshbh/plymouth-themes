@@ -55,23 +55,32 @@ castle.sprite.SetY (groundLevel-castle.image.GetHeight());
 castle.sprite.SetOpacity (1.0);
 castle.sprite.SetZ (50);
 
-# Cloud
-cloud.rawImage = Image("smallCloud.png");
-cloud.image = cloud.rawImage.Scale(cloud.rawImage.GetWidth() * factor, cloud.rawImage.GetHeight() * factor);
-cloud.sprite = Sprite(cloud.image);
-cloud.sprite.SetX (leftEdge+2*unit);
-cloud.sprite.SetY (groundLevel - 5*unit - cloud.image.GetHeight());
-cloud.sprite.SetOpacity (1.0);
-cloud.sprite.SetZ (102);
+# Small Cloud
+smallCloud.rawImage = Image("smallCloud.png");
+smallCloud.image = smallCloud.rawImage.Scale(smallCloud.rawImage.GetWidth() * factor, smallCloud.rawImage.GetHeight() * factor);
+smallCloud.sprite = Sprite(smallCloud.image);
+smallCloud.sprite.SetX (leftEdge + unit);
+smallCloud.sprite.SetY (groundLevel - 4*unit - smallCloud.image.GetHeight());
+smallCloud.sprite.SetOpacity (1.0);
+smallCloud.sprite.SetZ (103);
 
 # Big Cloud
 bigCloud.rawImage = Image("bigCloud.png");
 bigCloud.image = bigCloud.rawImage.Scale(bigCloud.rawImage.GetWidth() * factor, bigCloud.rawImage.GetHeight() * factor);
 bigCloud.sprite = Sprite(bigCloud.image);
-bigCloud.sprite.SetX (leftEdge+7*unit);
-bigCloud.sprite.SetY (groundLevel-4*unit-bigCloud.image.GetHeight());
-bigCloud.SetOpacity (1.0);
+bigCloud.sprite.SetX (leftEdge + 11*unit);
+bigCloud.sprite.SetY (groundLevel-5*unit-bigCloud.image.GetHeight());
+bigCloud.sprite.SetOpacity (1.0);
 bigCloud.sprite.SetZ (101);
+
+# Ubuntu Logo
+logo.rawImage = Image("ubuntu.png");
+logo.image = logo.rawImage.Scale(logo.rawImage.GetWidth() * factor, logo.rawImage.GetHeight() * factor);
+logo.sprite = Sprite(logo.image);
+logo.sprite.SetX (leftEdge + 5*unit);
+logo.sprite.SetY (groundLevel - 4*unit - logo.image.GetHeight());
+logo.sprite.SetOpacity (1.0);
+logo.sprite.SetZ (102);
 
 # Small Hill
 smallHill.rawImage = Image("smallHill.png");
@@ -79,17 +88,17 @@ smallHill.image = smallHill.rawImage.Scale(smallHill.rawImage.GetWidth() * facto
 smallHill.sprite = Sprite(smallHill.image);
 smallHill.sprite.SetX (leftEdge+unit*6);
 smallHill.sprite.SetY (groundLevel-smallHill.image.GetHeight());
-smallHill.SetOpacity (1.0);
-smallHill.sprite.SetZ (25);
+smallHill.sprite.SetOpacity (1.0);
+smallHill.sprite.SetZ (20);
 
 # Big Hill
 bigHill.rawImage = Image("bigHill.png");
 bigHill.image = bigHill.rawImage.Scale(bigHill.rawImage.GetWidth() * factor, bigHill.rawImage.GetHeight() * factor);
 bigHill.sprite = Sprite(bigHill.image);
-bigHill.sprite.SetX (leftEdge + unit*2);
+bigHill.sprite.SetX (leftEdge + unit);
 bigHill.sprite.SetY (groundLevel - bigHill.image.GetHeight());
-bigHill.SetOpacity (1.0);
-bigHill.sprite.SetZ (20);
+bigHill.sprite.SetOpacity (1.0);
+bigHill.sprite.SetZ (25);
 
 # Small Bush
 smallBush.rawImage = Image("smallBush.png");
@@ -97,7 +106,7 @@ smallBush.image = smallBush.rawImage.Scale(smallBush.rawImage.GetWidth() * facto
 smallBush.sprite = Sprite(smallBush.image);
 smallBush.sprite.SetX (leftEdge);
 smallBush.sprite.SetY (groundLevel - smallBush.image.GetHeight());
-smallBush.SetOpacity (1.0);
+smallBush.sprite.SetOpacity (1.0);
 smallBush.sprite.SetZ (35);
 
 # Mario
@@ -108,7 +117,7 @@ for(i=0;i<3;i++)
     mario[i].sprite = Sprite(mario[i].image);
     mario[i].sprite.SetX (leftEdge);
     mario[i].sprite.SetY (groundLevel - mario[i].image.GetHeight());
-    mario[i].SetOpacity (1.0);
+    mario[i].sprite.SetOpacity (1.0);
     mario[i].sprite.SetZ (-1);
 }
 
@@ -122,6 +131,10 @@ fun refresh()
         }
         mario[remainder+1].sprite.SetZ (99);
         mario[remainder+1].sprite.SetX (leftEdge + progress/2);
+        smallCloud.sprite.SetX (leftEdge + unit + progress/2);
+        bigCloud.sprite.SetX (leftEdge + 11 * unit - progress/2);
+        if ( (6 * unit - progress/2) < (logo.image.GetWidth()))
+            bigCloud.sprite.SetOpacity (0.2)
     }
 }
 
