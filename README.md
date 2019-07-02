@@ -2,6 +2,8 @@
 The repository contains themes which can be used as boot animations in linux distributions.
 The themes have been tested on Ubuntu 16.04 LTE.
 
+![gif](https://github.com/hrishabh23/plymouth-themes/tree/master/mario/gimp/mario.gif)
+
 ## Getting Started
 
 ### Finding the Plymouth theme directory
@@ -32,7 +34,7 @@ sudo update-initramfs -u
 Done.
 
 ### Acknowledgments
-* Amazing tutorials of Charlie Brej on Creating Plymouth themes. Found [Here](https://brej.org/blog/?p=158)
+* Amazing tutorials by Charlie Brej on Creating Plymouth themes. Can be found [here](https://brej.org/blog/?p=158)
 * Sprites by Kevin Huff at stupidsonic@yahoo.com
 
 Mario is a copyright of Nintendo
