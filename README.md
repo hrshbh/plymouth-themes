@@ -2,7 +2,8 @@
 The repository contains themes which can be used as boot animations in linux distributions.
 The themes have been tested on Ubuntu 16.04 LTE.
 
-![Mario](https://github.com/hrishabh23/plymouth-themes/tree/master/mario/gimp/mario.gif)
+![Mario](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/mario.gif)
+![ECorp](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/ecorp.gif)
 
 ## Getting Started
 
