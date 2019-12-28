@@ -1,0 +1,83 @@
+# Window Sizes
+window_width = Window.GetWidth();
+window_height = Window.GetHeight();
+screen_x = Window.GetX();
+screen_y = Window.GetY();
+
+# Background is Black
+
+# There are four states:
+# State 0 : The Normal ECorp logo (70 Frames)
+# State 1 : A Little distorted ECorp logo (5 Frames)
+# State 2 : The glitched E(vil) Corp logo (5 Frames)
+# State 3 : The Normal Evil Corp logo (70 Frames)
+# One Frame is visible for one 50th of a second, at minimum
+time = 0;
+
+# Importing images
+logo.e = Image("glitch0.png");
+logo.e_distorted = Image("glitch1.png");
+logo.e_glitched = Image("glitch2.png");
+
+text.e = Image("e.png");
+text.e_distorted = Image("e_d.png");
+text.e_glitched = Image("e_g.png");
+text.evil = Image("evil.png");
+
+# Sprites
+logo.sprite = Sprite(logo.e);
+logo.sprite.SetOpacity (1.0);
+logo.sprite.SetX (screen_x + (window_width / 2) - (logo.e.GetWidth() / 2));
+logo.sprite.SetY (screen_y + (window_height / 2) - (logo.e.GetHeight() / 2) - 50);
+logo.sprite.SetZ (10);
+
+text.sprite = Sprite(text.e);
+text.sprite.SetOpacity (1.0);
+text.sprite.SetX (screen_x);
+text.sprite.SetY (screen_y);
+text.sprite.SetX (screen_x + (window_width / 2) - (text.e.GetWidth() / 2));
+text.sprite.SetY (screen_y + (window_height / 2) - (text.e.GetHeight() / 2) + 80);
+text.sprite.SetZ (10);
+
+# 0 -> 1 -> 2 -> 3 -> 2 -> 1 -> 0
+fun refreshHandler() {
+    if (time < 160){
+        time = time + 1;
+    }
+    else {
+        time = 0;
+    }
+
+    if (time == 0){
+        logo.sprite.SetImage(logo.e);
+        text.sprite.SetImage(text.e);
+    }
+    else {
+    if (time == 70){
+        logo.sprite.SetImage(logo.e_distorted);
+        text.sprite.SetImage(text.e_distorted);
+    }
+    else {
+    if (time == 75){
+        logo.sprite.SetImage(logo.e_glitched);
+        text.sprite.SetImage(text.e_glitched);
+    }
+    else {
+    if (time == 80){
+        logo.sprite.SetImage(logo.e);
+        text.sprite.SetImage(text.evil);
+    }
+    else {
+    if (time == 150){
+        logo.sprite.SetImage(logo.e_glitched);
+        text.sprite.SetImage(text.e_glitched);
+    }
+    else {
+    if (time == 155){
+        logo.sprite.SetImage(logo.e_distorted);
+        text.sprite.SetImage(text.e_distorted);
+    }
+    }}}}}
+}
+
+Plymouth.SetRefreshFunction (refreshHandler);

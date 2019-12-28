@@ -1,0 +1,141 @@
+# Window Sizes
+window_width = Window.GetWidth();
+window_height = Window.GetHeight();
+screen_x = Window.GetX();
+screen_y = Window.GetY();
+
+# Background Sky
+background.image = Image("background.png");
+progress = 0;
+
+# Scaling
+ratio = window_height / window_width;
+imagesRatio = background.image.GetHeight() / background.image.GetWidth();
+factor = 0;
+
+if (ratio > imagesRatio) {
+    
+    factor = window_height / background.image.GetHeight();
+
+}
+else {
+
+    factor = window_width / background.image.GetWidth();
+
+}
+sky.image = background.image.Scale(background.image.GetWidth() * factor, background.image.GetHeight() * factor);
+sky.sprite = Sprite(sky.image);
+sky.sprite.SetX (screen_x + window_width / 2 - sky.image.GetWidth() / 2);
+sky.sprite.SetY (screen_y + window_height / 2 - sky.image.GetHeight() / 2);
+sky.sprite.SetOpacity (1.0);
+sky.sprite.SetZ (0);
+
+
+# Ground
+floor.image = Image("ground.png");
+ground.image = floor.image.Scale(floor.image.GetWidth() * factor, floor.image.GetHeight() * factor);
+ground.sprite = Sprite(ground.image);
+ground.sprite.SetX (screen_x + window_width / 2 - ground.image.GetWidth() / 2);
+ground.sprite.SetY (screen_y + window_height - ground.image.GetHeight());
+ground.sprite.SetOpacity (1.0);
+ground.sprite.SetZ (100);
+
+# Coordinates
+leftEdge = screen_x; 
+unit = window_width / 16;
+groundLevel = screen_y + window_height - ground.image.GetHeight();
+rightEdge = screen_x + window_width;
+
+# Castle
+castle.rawImage = Image("castle.png");
+castle.image = castle.rawImage.Scale(castle.rawImage.GetWidth() * factor, castle.rawImage.GetHeight() * factor);
+castle.sprite = Sprite(castle.image);
+castle.sprite.SetX (leftEdge + unit * 10);
+castle.sprite.SetY (groundLevel-castle.image.GetHeight());
+castle.sprite.SetOpacity (1.0);
+castle.sprite.SetZ (50);
+
+# Small Cloud
+smallCloud.rawImage = Image("smallCloud.png");
+smallCloud.image = smallCloud.rawImage.Scale(smallCloud.rawImage.GetWidth() * factor, smallCloud.rawImage.GetHeight() * factor);
+smallCloud.sprite = Sprite(smallCloud.image);
+smallCloud.sprite.SetX (leftEdge + unit);
+smallCloud.sprite.SetY (groundLevel - 4*unit - smallCloud.image.GetHeight());
+smallCloud.sprite.SetOpacity (1.0);
+smallCloud.sprite.SetZ (103);
+
+# Big Cloud
+bigCloud.rawImage = Image("bigCloud.png");
+bigCloud.image = bigCloud.rawImage.Scale(bigCloud.rawImage.GetWidth() * factor, bigCloud.rawImage.GetHeight() * factor);
+bigCloud.sprite = Sprite(bigCloud.image);
+bigCloud.sprite.SetX (leftEdge + 11*unit);
+bigCloud.sprite.SetY (groundLevel-5*unit-bigCloud.image.GetHeight());
+bigCloud.sprite.SetOpacity (1.0);
+bigCloud.sprite.SetZ (101);
+
+# Ubuntu Logo
+logo.rawImage = Image("ubuntu.png");
+logo.image = logo.rawImage.Scale(logo.rawImage.GetWidth() * factor, logo.rawImage.GetHeight() * factor);
+logo.sprite = Sprite(logo.image);
+logo.sprite.SetX (leftEdge + 5*unit);
+logo.sprite.SetY (groundLevel - 4*unit - logo.image.GetHeight());
+logo.sprite.SetOpacity (1.0);
+logo.sprite.SetZ (102);
+
+# Small Hill
+smallHill.rawImage = Image("smallHill.png");
+smallHill.image = smallHill.rawImage.Scale(smallHill.rawImage.GetWidth() * factor, smallHill.rawImage.GetHeight() * factor);
+smallHill.sprite = Sprite(smallHill.image);
+smallHill.sprite.SetX (leftEdge+unit*6);
+smallHill.sprite.SetY (groundLevel-smallHill.image.GetHeight());
+smallHill.sprite.SetOpacity (1.0);
+smallHill.sprite.SetZ (20);
+
+# Big Hill
+bigHill.rawImage = Image("bigHill.png");
+bigHill.image = bigHill.rawImage.Scale(bigHill.rawImage.GetWidth() * factor, bigHill.rawImage.GetHeight() * factor);
+bigHill.sprite = Sprite(bigHill.image);
+bigHill.sprite.SetX (leftEdge + unit);
+bigHill.sprite.SetY (groundLevel - bigHill.image.GetHeight());
+bigHill.sprite.SetOpacity (1.0);
+bigHill.sprite.SetZ (25);
+
+# Small Bush
+smallBush.rawImage = Image("smallBush.png");
+smallBush.image = smallBush.rawImage.Scale(smallBush.rawImage.GetWidth() * factor, smallBush.rawImage.GetHeight() * factor);
+smallBush.sprite = Sprite(smallBush.image);
+smallBush.sprite.SetX (leftEdge);
+smallBush.sprite.SetY (groundLevel - smallBush.image.GetHeight());
+smallBush.sprite.SetOpacity (1.0);
+smallBush.sprite.SetZ (35);
+
+# Mario
+for(i=0;i<3;i++)
+{
+    mario[i].rawImage = Image("mario"+i+".png");
+    mario[i].image = mario[i].rawImage.Scale(mario[i].rawImage.GetWidth() * factor, mario[i].rawImage.GetHeight() * factor);
+    mario[i].sprite = Sprite(mario[i].image);
+    mario[i].sprite.SetX (leftEdge);
+    mario[i].sprite.SetY (groundLevel - mario[i].image.GetHeight());
+    mario[i].sprite.SetOpacity (1.0);
+    mario[i].sprite.SetZ (-1);
+}
+
+fun refresh()
+{
+    progress++;
+    if ( (progress % 10) == 0){
+        remainder = ( progress / 10 ) % 2;
+        for(i=0;i<2;i++){
+            mario[i+1].sprite.SetZ (-1);
+        }
+        mario[remainder+1].sprite.SetZ (99);
+        mario[remainder+1].sprite.SetX (leftEdge + progress/2);
+        smallCloud.sprite.SetX (leftEdge + unit + progress/2);
+        bigCloud.sprite.SetX (leftEdge + 11 * unit - progress/2);
+        if ( (6 * unit - progress/2) < (logo.image.GetWidth()))
+            bigCloud.sprite.SetOpacity (0.2)
+    }
+}
+
+Plymouth.SetRefreshFunction (refresh);
