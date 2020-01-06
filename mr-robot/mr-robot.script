@@ -1,0 +1,73 @@
+#Screen Sizes
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+screen_x = Window.GetX();
+screen_y = Window.GetY();
+
+# Loading Images
+background_image = Image("wallpaper.png");
+title.image = Image("title.png");
+credit.image = Image("credit.png");
+
+# Resizing the background image according to the screen
+ratio = screen_height / screen_width;
+background_ratio = background_image.GetHeight() / background_image.GetWidth();
+factor = 0;
+
+if (ratio > background_ratio) {
+
+	factor = screen_height / background_image.GetHeight();
+
+}
+else {
+	
+	factor = screen_width / background_image.GetWidth();
+	
+}
+
+scaled = background_image.Scale(background_image.GetWidth() * factor, background_image.GetHeight() * factor);
+
+# Sprites
+
+background_sprite = Sprite(scaled);
+title.sprite = Sprite(title.image);
+credit.sprite =  Sprite(credit.image);
+
+# Setting Sprite Position
+background_sprite.SetX(screen_x + screen_width / 2 - scaled.GetWidth() / 2);
+background_sprite.SetY(screen_y + screen_height / 2 - scaled.GetHeight() / 2);
+background_sprite.SetZ(0);
+
+title.sprite.SetX(screen_x + (screen_width / 2) - (title.image.GetWidth() / 2));
+title.sprite.SetY(screen_y + (screen_height / 2) - (title.image.GetHeight() / 2) - 80);
+title.sprite.SetZ(10);
+
+credit.sprite.SetX(screen_x + (screen_width / 2) - (credit.image.GetWidth() / 2));
+credit.sprite.SetY(screen_y + screen_height - credit.image.GetHeight() - 100);
+credit.sprite.SetZ(10);
+
+# Setting Sprite Opacity
+background_sprite.SetOpacity (1.0);
+title.sprite.SetOpacity (0.0);
+credit.sprite.SetOpacity (0.0);
+
+time = 0;
+
+fun refreshHandler() {
+    if (time < 150) {
+        time = time + 1;
+
+        if(time == 50) {
+            title.sprite.SetOpacity (1.0);
+        }
+        else {
+        if(time == 150) {
+            credit.sprite.SetOpacity (1.0);
+        }}
+    }
+    else {
+        time = 500; # Just a stopping condition
+    }
+}
+
+Plymouth.SetRefreshFunction (refreshHandler);

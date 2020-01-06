@@ -5,6 +5,7 @@ The themes have been tested on Ubuntu 16.04 LTE.
 ![Mario](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/mario.gif)
 ![ECorp-Spinner](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/ecorp_spinner.gif)
 ![ECorp-Glitch](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/ecorp_glitch.gif)
+![Mr-Robot](https://github.com/hrishabh23/plymouth-themes/blob/master/gifs/mr-robot.gif)
 
 ## Getting Started
 
