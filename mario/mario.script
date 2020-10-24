@@ -69,7 +69,7 @@ bigCloud.rawImage = Image("bigCloud.png");
 bigCloud.image = bigCloud.rawImage.Scale(bigCloud.rawImage.GetWidth() * factor, bigCloud.rawImage.GetHeight() * factor);
 bigCloud.sprite = Sprite(bigCloud.image);
 bigCloud.sprite.SetX (leftEdge + 11*unit);
-bigCloud.sprite.SetY (groundLevel-5*unit-bigCloud.image.GetHeight());
+bigCloud.sprite.SetY (groundLevel - 5*unit - bigCloud.image.GetHeight());
 bigCloud.sprite.SetOpacity (1.0);
 bigCloud.sprite.SetZ (101);
 
@@ -129,6 +129,7 @@ fun refresh()
         for(i=0;i<2;i++){
             mario[i+1].sprite.SetZ (-1);
         }
+        if(progress > unit * 13) progress = 0;
         mario[remainder+1].sprite.SetZ (99);
         mario[remainder+1].sprite.SetX (leftEdge + progress/2);
         smallCloud.sprite.SetX (leftEdge + unit + progress/2);
