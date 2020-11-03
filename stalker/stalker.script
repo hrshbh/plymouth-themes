@@ -1,0 +1,62 @@
+# Window Sizes
+window_width = Window.GetWidth();
+window_height = Window.GetHeight();
+screen_x = Window.GetX();
+screen_y = Window.GetY();
+
+# Coordinates
+center_x = screen_x + window_width / 2;
+center_y = screen_y + window_height / 2;
+
+# Background Raw
+bg.rawImage = Image("background.png");
+progress = 0;
+
+# Scaling
+ratio = window_height / window_width;
+imagesRatio = bg.rawImage.GetHeight() / bg.rawImage.GetWidth();
+factor = 0;
+
+if (ratio > imagesRatio) {
+    factor = window_height / bg.rawImage.GetHeight();
+}
+else {
+    factor = window_width / bg.rawImage.GetWidth();
+}
+
+# Background
+bg.image = bg.rawImage.Scale(bg.rawImage.GetWidth() * factor, bg.rawImage.GetHeight() * factor);
+bg.sprite = Sprite(bg.image);
+bg.sprite.SetX(center_x - bg.image.GetWidth() / 2);
+bg.sprite.SetY(center_y - bg.image.GetHeight() / 2);
+bg.sprite.SetOpacity(1.0);
+bg.sprite.SetZ(0);
+
+
+# Logo
+for(i=0 ; i<32 ; i++)
+{
+    logo[i].rawImage = Image("logo"+i+".png");
+    logo[i].image = logo[i].rawImage.Scale(logo[i].rawImage.GetWidth() * factor * 0.6, logo[i].rawImage.GetHeight() * factor * 0.6);
+    logo[i].sprite = Sprite(logo[i].image);
+    logo[i].sprite.SetX(center_x - logo[i].image.GetWidth() / 2);
+    logo[i].sprite.SetY(center_y - logo[i].image.GetHeight() / 2);
+    logo[i].sprite.SetOpacity (1.0);
+    logo[i].sprite.SetZ(-1);
+}
+
+# Refresh Function
+fun refresh()
+{
+    progress++;
+    if ((progress % 3) == 0){
+        img = ( progress / 3 ) % 32;
+
+        if(img == 0) logo[31].sprite.SetZ(-1);
+        else logo[img - 1].sprite.SetZ(-1);
+
+        logo[img].sprite.SetZ(99);
+    }
+}
+
+Plymouth.SetRefreshFunction(refresh);

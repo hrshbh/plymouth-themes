@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Stalker
+Description=Stalker by Andrei Tarkovsky
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/stalker
+ScriptFile=/usr/share/plymouth/themes/stalker/stalker.script

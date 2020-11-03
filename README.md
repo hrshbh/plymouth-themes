@@ -13,6 +13,7 @@ Name | Theme GIF | Name | Theme GIF
 ---- | --------- | ---- | ---------
 Mario | <img src="/gifs/mario.gif" width="640"/> | ECorp-Spinner | <img src="/gifs/ecorp_spinner.gif" width="640"/>
 ECorp-Glitch | <img src="/gifs/ecorp_glitch.gif" width="640"/> | Mr-Robot | <img src="/gifs/mr-robot.gif" width="640"/>
+Stalker | <img src="/gifs/stalker.gif" width="640"/> | |
 
 ## Getting Started
 
